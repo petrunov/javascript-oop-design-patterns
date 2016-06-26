@@ -6,9 +6,7 @@ Creational mechanisms to create objects suitable for the sutiation they are work
 Constructor, Factory, Abstract, Prototype, Singleton, Builder
 
 Structural patterns
-Concerned with composition  - identify simple ways to realize relationships (think dependency) between objects.
-
-Ensure that a part of the system can be changed without causing the requirement to make changes in other parts.
+Concerned with composition  - identify simple ways to realize relationships (think dependency) between objects. Ensure that a part of the system can be changed without causing the requirement to make changes in other parts.
 Assist in recasting parts of the system which don't fit a particular purpose into those that do.
 Decorator, Facade, Flyweight, Adapter, Proxy
 
