@@ -43,7 +43,7 @@ Behavioral
 * Memento - Capture an object internal state to be able to restore it later.
 * Observer - A way of notifying change to a number of objects to ensure consistency.
 * State - Alter an object's behavior when its state changes.
-* Strategy - 
-* viVisitor - 
+* Strategy 
+* Visitor 
 
 
