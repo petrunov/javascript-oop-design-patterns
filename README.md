@@ -12,7 +12,7 @@ Assist in recasting parts of the system which don't fit a particular purpose int
 Decorator, Facade, Flyweight, Adapter, Proxy
 
 Behavioral patterns
-Strealine the communication between objects.
+Stremaline the communication between objects.
 Iterator, Mediator, Observer, Visitor
 
 
