@@ -1,3 +1,9 @@
+/* 
+ * This approach has several drawbacks - the most obvious being that there is no way to have 
+ * "private" properties and methods in the module.
+ */
+
+
 const configModule = {
 
  // default config - can be changed, extended
