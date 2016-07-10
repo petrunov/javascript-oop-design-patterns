@@ -61,5 +61,13 @@ remoteOne.nextChannel()
 remoteTwo.nextChannel()
 remoteThree.nextChannel()
 
+console.log('Channel on tv one', tvOne.channel,'Channel on tv two',  tvTwo.channel, 'Channel on tv three', tvThree.channel)
 
-console.log(tvOne.channel, tvTwo.channel, tvThree.channel)
+module.exports = {
+  remoteOne: remoteOne,
+  remoteTwo: remoteTwo,
+  remoteThree: remoteThree,
+  tvOne: tvOne,
+  tvTwo: tvTwo,
+  tvThree: tvThree
+}
