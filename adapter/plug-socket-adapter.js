@@ -20,9 +20,6 @@ euSocket = {
 console.log('us plug & us socket')
 usPlug.plugIn(usSocket)
 
-console.log('eu plug & us socket')
-euPlug.plugIn(usSocket)
-
 console.log('us plug & eu socket')
 usPlug.plugIn(euSocket)
 
