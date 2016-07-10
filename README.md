@@ -23,6 +23,7 @@ Creational
 * Abstract factory - Creates instance of several families of types without detailing concrete types.
 * Builder - Separates object construction from representation, always create same type of object.
 * Prototype - Initialized instance used for copying or cloning.
+* Module - Private state scope achieved with IIFE and closure.
 * Singleton - A type with only a single instance with global access points.
 
 Structural
