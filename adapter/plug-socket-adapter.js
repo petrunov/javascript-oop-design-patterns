@@ -1,56 +1,50 @@
 usPlug = {
-  pins: 3
+  pins: 'flat',
+  plugIn: socket => {(socket.wholes === usPlug.pins ? console.log('connected') : console.log('incompatible interface')); return socket}
 }
 
 usSocket = {
-  wholes: 3
+  wholes: 'flat'
 }
 
 euPlug = {
-  pins: 2
+  pins: 'round',
+  plugIn: socket => {(socket.wholes === usPlug.pins ? console.log('connected') : console.log('incompatible interface')); return socket}
 }
 
 euSocket = {
-  wholes: 2
+  wholes: 'round'
 }
 
-function connect(plug, socket) {
-  if (plug.pins === socket.wholes) {
-    console.log('connected')
-  } else {
-    console.log('incompatible interfaces')
-  }
-
-  return socket
-}
 
 console.log('us plug & us socket')
-connect(usPlug, usSocket)
+usPlug.plugIn(usSocket)
 
 console.log('eu plug & us socket')
-connect(euPlug, euSocket)
+euPlug.plugIn(usSocket)
 
 console.log('us plug & eu socket')
-connect(usPlug, euSocket)
+usPlug.plugIn(euSocket)
 
 var usPlugToEuSocketAdapter = {
-  wholes: 3, // us socket for us plug
-  pins: 2, // eu plug for eu socket
+  wholes: 'flat',
+  pins: 'round',
+  plugIn: socket => {(socket.wholes === usPlugToEuSocketAdapter.pins ? console.log('connected') : console.log('incompatible interface')); return socket}
 }
 
 
 console.log('us plug & us plug to eu socket adapter')
-var usPlugToEuPlug = connect(usPlug, usPlugToEuSocketAdapter)
+var usPlugToEuPlug = usPlug.plugIn(usPlugToEuSocketAdapter)
 
 console.log('us plug to eu plug & eu socket')
-var usPlugToEuPlugToEuSocket = connect(usPlugToEuPlug, euSocket)
+usPlugToEuPlug.plugIn(euSocket)
 
 
 module.exports = {
   usPlug: usPlug,
   usSocket: usSocket,
   euPlug: euPlug,
-  euSocket: euSocket,
-  usPlugToEuSocketAdapter: usPlugToEuSocketAdapter,
-  connect: connect
+  euSocket: euSocket
 }
+
+// Exercise: Which pattern would you use in order to remove code repetition? Do it.

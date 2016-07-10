@@ -3,6 +3,7 @@ var buttons = {
   fancy: {type: 'fancy'}
 }
 
+// alternative to button
 // var inputs = {
 //   text: {type: 'text'},
 //   textarea: {type: 'textarea'}
@@ -15,6 +16,8 @@ function buttonFactory (type) {
 
   return Object.create(buttons[type], { instantiated: {value: true}})
   
+  // What if we use this function to create more types of elements, like 'input'?
+
   // switch (element) {
   //   case 'button':
   //     ...
@@ -24,9 +27,10 @@ function buttonFactory (type) {
   //     break
   // }
 
-  // name is wrong
+  // - function name would be wrong!
 
-  // do one thing, do it well
+  // Better for the function to do one thing but to do it well.
+  // Check the example for abstract factory instead!
 }
 
 var fancyButton = buttonFactory('fancy')
