@@ -1,11 +1,11 @@
-var mealBuilder = {
+var mealFactory = {
   orderMeal: function (type) {
     switch (type) {
       case 'cheap':
-        meal = cheapMealBuilder(mealSpecs)
+        meal = cheapMealBuilder()
         break
       case 'expensive':
-        meal = expensiveMealBuilder(mealSpecs)
+        meal = expensiveMealBuilder()
         break
     }
     return meal
@@ -33,8 +33,8 @@ var expensiveMealBuilder = () => {
 
 
 
-var myCheapMeal = mealBuilder.orderMeal('cheap');
-var myExpensiveMeal = mealBuilder.orderMeal('expensive');
+var myCheapMeal = mealFactory.orderMeal('cheap');
+var myExpensiveMeal = mealFactory.orderMeal('expensive');
 
 console.log('burger', myCheapMeal.burger.size, 'drink', myCheapMeal.drink, 'dessert', myCheapMeal.dessert)
 console.log('burger', myExpensiveMeal.burger.size, 'drink', myExpensiveMeal.drink.name, 'dessert', myExpensiveMeal.dessert.name)
