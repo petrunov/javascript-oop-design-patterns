@@ -41,7 +41,8 @@ module.exports = {
   usPlug: usPlug,
   usSocket: usSocket,
   euPlug: euPlug,
-  euSocket: euSocket
+  euSocket: euSocket,
+  usPlugToEuSocketAdapter: usPlugToEuSocketAdapter
 }
 
 // Exercise: Which pattern would you use in order to remove code repetition? Do it.
