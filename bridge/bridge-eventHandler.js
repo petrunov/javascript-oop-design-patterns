@@ -1,3 +1,10 @@
+/*
+  node module 'bridge', usage:
+  var bridge = require('./bridge-eventHandler.js')
+  bridge.News.output = bridge.Printer | bridge.News.output = bridge.Alerter
+  bridge.News.events.click(bridge.News.articles[0])
+  bridge.News.events.click(bridge.News.articles[1])
+*/
 
 var News = {
  articles: [
@@ -5,16 +12,20 @@ var News = {
       id: 0,
       name: 'they voted to leave',
       href: 'www.euronews.com'
+    },
+    {
+      id: 1,
+      name: 'people shot in the USA',
+      href: 'www.cnn.com'
     }
   ],
 
+  output: null,
 
-  printArticleId: (id) => console.log('clicked', id),
-
-  clickHandler: (Event) => {
+  clickHandler: function(Event) {
     var targetId = Event.target.id
 
-    News.printArticleId(targetId)
+    this.output.click(targetId)
   },
 
   events: {
@@ -28,8 +39,26 @@ var News = {
 }
 
 
+
+
+var Printer = {
+  click: id => console.log('clicked', id)
+}
+
+var Alerter = {
+  click: id => {console.log('-----------------'); console.log('ALERT:', id); console.log('------------------')}
+}
+
+var Audio = {
+  click: id => {console.log('-----------------'); console.log('PLAY SOUND: CLICK'); console.log('------------------')}
+}
+
+
 module.exports = {
-  News: News
+  News: News,
+  Printer: Printer,
+  Alerter: Alerter,
+  Audio: Audio
 }
 
 
