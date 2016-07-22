@@ -43,6 +43,10 @@ let CreateCmd = {
 			})
 			this.receiver.resizable()
 
+      this.receiver.mousedown(function () {
+        lastClicked = $(this)
+      }) 
+
 			this.receiver.appendTo('body')
 			this.isCreated = true;
 		}else {

@@ -21,17 +21,17 @@
 
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
-  <script src="./node_modules/requirejs/require.js"></script>
+  <script src="node_modules/requirejs/require.js"></script>
   <script src="Commander.js"></script>
   <script src="CreateCmd.js"></script>
   <script src="DragCmd.js"></script>
   <script src="DeleteCmd.js"></script>
   <script>
-
+    let lastClicked = null
     $('document').ready(function() {
       $('body').on('click','.ui-draggable',function(e){lastClicked = this});
 
-      let lastClicked = null
+      
       function deleteLastClicked() {
         if (lastClicked) {
           lastClicked.remove()
@@ -50,8 +50,6 @@
       $('#redo').click(clickHandler)
       $('#delete').click(clickHandler)
       function clickHandler(e) {
-        //alert($('body').html());
-
         switch ($(this).attr('id')) {
           case 'create':
             commander.execute(Object.assign({}, CreateCmd))
@@ -59,7 +57,6 @@
           case 'delete':
 
             var options = {};
-            options.receiver = lastClicked;
             commander.execute(Object.assign({}, DeleteCmd, options));
             break;
           case 'undo':
