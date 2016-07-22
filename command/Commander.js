@@ -12,6 +12,7 @@ const commander = {
     var options = options || {}
     command.execute(options)
     this.executed.push(command)
+    this.reverted = []
   },
 
   // revert the commnand action
@@ -33,4 +34,4 @@ const commander = {
   }
 }
 
-// module.exports = commander
+// module.exports =  commander

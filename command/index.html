@@ -16,7 +16,12 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
+
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+    <script src="./node_modules/requirejs/require.js"></script>
     <script src="Commander.js"></script>
     <script src="CreateCmd.js"></script>
     <script>
@@ -47,38 +52,40 @@
         console.log($(this).attr('id'))
         switch ($(this).attr('id')) {
           case 'create':
-            createRectangle()
+            commander.execute(Object.assign({}, CreateCmd))
             break;
           case 'delete':
             deleteLastClicked()
             break;
           case 'undo':
+            commander.undo()
             break;
           case 'redo':
+            commander.redo()
             break;
         }
       }
 
-      function createRectangle() {
-        let min = 50,
-            max = 150.
-            width = Math.random()* (max - min) + min,
-            height = Math.random()* (max - min) + min,
-            background = '#'+Math.floor(Math.random()*16777215).toString(16)
+      // function createRectangle() {
+      //   let min = 50,
+      //       max = 150.
+      //       width = Math.random()* (max - min) + min,
+      //       height = Math.random()* (max - min) + min,
+      //       background = '#'+Math.floor(Math.random()*16777215).toString(16)
 
-        let newRect = $('<div/>')
-        newRect.css('position', 'absolute')
-        newRect.css('width', width)
-        newRect.css('height', height)
-        newRect.css('background', background)
-        newRect.draggable()
-        newRect.resizable()
-        newRect.mousedown(function () {
-          lastClicked = $(this)
-        })
+      //   let newRect = $('<div/>')
+      //   newRect.css('position', 'absolute')
+      //   newRect.css('width', width)
+      //   newRect.css('height', height)
+      //   newRect.css('background', background)
+      //   newRect.draggable()
+      //   newRect.resizable()
+      //   newRect.mousedown(function () {
+      //     lastClicked = $(this)
+      //   })
 
-        newRect.appendTo('body')
-      }
+      //   newRect.appendTo('body')
+      // }
 
 
 
