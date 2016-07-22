@@ -53,7 +53,6 @@ let CreateCmd = {
     }
   },
   undo: function () {
-    debugger
     if (this.executed) {
       this.receiver.hide()
       this.executed = false

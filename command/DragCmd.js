@@ -22,7 +22,6 @@ let DragCmd = {
     }
   },
   undo: function () {
-    debugger
     if (this.executed) {
       $(this.element).css('top', this.dragActionOptions.startTop + 'px');
       $(this.element).css('left', this.dragActionOptions.startLeft + 'px');
