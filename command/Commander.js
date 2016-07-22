@@ -1,5 +1,5 @@
 "use strict";
-const commander = {
+var commander = {
 
   // stores a list of executed commands
   executed: [],
@@ -9,6 +9,7 @@ const commander = {
 
   // execute a given command
   execute: function (command, options) {
+    debugger;
     var options = options || {}
     command.execute(options)
     this.executed.push(command)
@@ -26,6 +27,7 @@ const commander = {
 
   // perform again the same command in the exact same way as the first time it was performed
   redo: function () {
+    debugger;
     let lastCmd = this.reverted.pop()
     if (lastCmd) {
       lastCmd.redo()

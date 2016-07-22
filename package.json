@@ -1,0 +1,23 @@
+{
+  "name": "javascript-oop-design-patterns",
+  "version": "1.0.0",
+  "description": "Object Oriented Programming Design Patterns In JavaScript",
+  "main": "index.js",
+  "dependencies": {
+    "requirejs": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petrunov/javascript-oop-design-patterns.git"
+  },
+  "author": "Marieta Ilarionova <marieta_ilarionova@epam.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/petrunov/javascript-oop-design-patterns/issues"
+  },
+  "homepage": "https://github.com/petrunov/javascript-oop-design-patterns#readme"
+}
