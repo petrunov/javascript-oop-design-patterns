@@ -1,9 +1,9 @@
 "use strict";
-let DragCmd = {
-  type: 'DragCmd',
+let ResizeCmd = {
+  type: 'ResizeCmd',
   executed: false,
   execute: function (options) {
-    let self = this;
+    
     this.options = options || {}
 
     if (!this.executed) {
@@ -13,20 +13,20 @@ let DragCmd = {
         this.options.receiver = $('#' + this.receiverId)
       }
 
-
-      this.options.receiver.css('top', this.options.dragActionOptions.endTop + 'px');
-      this.options.receiver.css('left', this.options.dragActionOptions.endLeft + 'px');
-
+      this.options.receiver.css('width', this.options.size.width)
+      this.options.receiver.css('height', this.options.size.height)
       this.executed = true
     }
   },
+
   undo: function () {
     if (this.executed) {
-      this.options.receiver.css('top', this.options.dragActionOptions.startTop + 'px');
-      this.options.receiver.css('left', this.options.dragActionOptions.startLeft + 'px');
+      this.options.receiver.css('width', this.options.originalSize.width)
+      this.options.receiver.css('height', this.options.originalSize.height)
       this.executed = false
     }
   },
+  
   redo: function () {
     this.execute(this.options)
   }

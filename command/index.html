@@ -18,46 +18,70 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 
-
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
-  <script src="node_modules/requirejs/require.js"></script>
+  <script src="domToJson.js"></script>
+  <script src="stringify.js"></script>
+  <script src="hello.json"></script>
+  <script src="smiley.json"></script>
   <script src="Commander.js"></script>
   <script src="CreateCmd.js"></script>
   <script src="DragCmd.js"></script>
   <script src="DeleteCmd.js"></script>
+  <script src="ResizeCmd.js"></script>
   <script>
     let lastClicked = null
-    $('document').ready(function() {
-      $('body').on('click','.ui-draggable',function(e){lastClicked = this});
 
-      
-      function deleteLastClicked() {
-        if (lastClicked) {
-          lastClicked.remove()
-          lastClicked = null
+    let player
+    let time = 40
+
+    let globalId = 0
+
+    function playReversed() {
+      clearInterval(player)
+      player = undefined
+      player = setInterval(function () {
+        if (commander.executed.length === 0) {
+          clearInterval(player)
+          return
         }
-      }
+        commander.undo()
+      }, time)
+    }
+
+    function playForward() {
+      clearInterval(player)
+      player = undefined
+      player = setInterval(function () {
+        if (commander.reverted.length === 0) {
+          clearInterval(player)
+          return
+        }
+        commander.redo()
+      }, time)
+    }
+
+
+    $('document').ready(function() {
+
       $('body').keydown(function(e) {
         if(e.keyCode === 46 || e.keyCode === 8) {
-          var options = {};
-          options.receiver = lastClicked;
-          commander.execute(Object.assign({}, DeleteCmd, options));
+          commander.execute(Object.assign({}, DeleteCmd), {receiver: lastClicked});
         }
       })
+
       $('#create').click(clickHandler)
       $('#undo').click(clickHandler)
       $('#redo').click(clickHandler)
       $('#delete').click(clickHandler)
+
       function clickHandler(e) {
         switch ($(this).attr('id')) {
           case 'create':
             commander.execute(Object.assign({}, CreateCmd))
             break;
           case 'delete':
-
-            var options = {};
-            commander.execute(Object.assign({}, DeleteCmd, options));
+            commander.execute(Object.assign({}, DeleteCmd), {receiver: lastClicked});
             break;
           case 'undo':
             commander.undo()
@@ -67,25 +91,7 @@
             break;
         }
       }
-      // function createRectangle() {
-      //   let min = 50,
-      //       max = 150.
-      //       width = Math.random()* (max - min) + min,
-      //       height = Math.random()* (max - min) + min,
-      //       background = '#'+Math.floor(Math.random()*16777215).toString(16)
-      //   let newRect = $('<div/>')
-      //   newRect.css('position', 'absolute')
-      //   newRect.css('width', width)
-      //   newRect.css('height', height)
-      //   newRect.css('background', background)
-      //   newRect.draggable()
-      //   newRect.resizable()
-      //   newRect.mousedown(function () {
-      //     lastClicked = $(this)
-      //   })
-      //   newRect.appendTo('body')
-      // }
-    })
+    })  
   </script>
 </head>
 <body>
