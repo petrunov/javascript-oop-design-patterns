@@ -22,8 +22,11 @@
 
   <script src="domToJson.js"></script>
   <script src="stringify.js"></script>
+  
   <script src="hello.json"></script>
   <script src="smiley.json"></script>
+  <script src="dancingman.json"></script>
+
   <script src="Commander.js"></script>
   <script src="CreateCmd.js"></script>
   <script src="DragCmd.js"></script>
@@ -31,36 +34,9 @@
   <script src="ResizeCmd.js"></script>
   <script>
     let lastClicked = null
-
-    let player
-    let time = 40
-
     let globalId = 0
 
-    function playReversed() {
-      clearInterval(player)
-      player = undefined
-      player = setInterval(function () {
-        if (commander.executed.length === 0) {
-          clearInterval(player)
-          return
-        }
-        commander.undo()
-      }, time)
-    }
-
-    function playForward() {
-      clearInterval(player)
-      player = undefined
-      player = setInterval(function () {
-        if (commander.reverted.length === 0) {
-          clearInterval(player)
-          return
-        }
-        commander.redo()
-      }, time)
-    }
-
+    let animations = {hello, smiley, dancingman}
 
     $('document').ready(function() {
 
@@ -70,25 +46,35 @@
         }
       })
 
-      $('#create').click(clickHandler)
-      $('#undo').click(clickHandler)
-      $('#redo').click(clickHandler)
-      $('#delete').click(clickHandler)
-
+      $('.clickable').click(clickHandler)
+    
       function clickHandler(e) {
         switch ($(this).attr('id')) {
           case 'create':
             commander.execute(Object.assign({}, CreateCmd))
-            break;
+            break
           case 'delete':
             commander.execute(Object.assign({}, DeleteCmd), {receiver: lastClicked});
-            break;
+            break
           case 'undo':
             commander.undo()
-            break;
+            break
           case 'redo':
             commander.redo()
-            break;
+            break
+          case 'rewind':
+            commander.rewind()
+            break
+          case 'play':
+            commander.play()
+            break
+          case 'save':
+            commander.save()
+            break
+          case 'load':
+            let json = (animations[prompt("Name of animation?", "smiley")])
+            commander.load(json)
+            break
         }
       }
     })  
@@ -96,10 +82,14 @@
 </head>
 <body>
 <div id="controls">
-  <button id="create">create</button>
-  <button id="delete">delete</button>
-  <button id="undo">undo</button>
-  <button id="redo">redo</button>
+  <button id="create" class="clickable">create</button>
+  <button id="delete" class="clickable">delete</button>
+  <button id="undo" class="clickable">undo</button>
+  <button id="redo" class="clickable">redo</button>
+  <button id="rewind" class="clickable">  << </button>
+  <button id="play" class="clickable"> >> </button>
+  <button id="save" class="clickable">save</button>
+  <button id="load" class="clickable">load</button>
 </div>
 
 </body>

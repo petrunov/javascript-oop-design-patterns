@@ -52,7 +52,7 @@ let CreateCmd = {
   				}
   			})
   			this.options.receiver.resizable({
-          handles: "n, e, s, w, ne, es, sw, wn",
+          handles: "n, e, s, w, ne, se, sw, nw",
           stop: function (e, ui) {
             commander.execute(Object.assign({}, ResizeCmd), {receiver: $(this), originalSize: ui.originalSize, size: ui.size})
           }

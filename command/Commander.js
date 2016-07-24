@@ -1,6 +1,10 @@
 "use strict";
 var commander = {
 
+  player: 0,
+
+  time: 100,
+
   // stores a list of executed commands
   executed: [],
 
@@ -24,7 +28,7 @@ var commander = {
     }
   },
 
-  // perform again the same command in the exact same way as the first time it was performed
+  // perform again the same command in the exact same way as the first this.time it was performed
   redo: function () {
     let lastCmd = this.reverted.pop()
     if (lastCmd) {
@@ -32,6 +36,29 @@ var commander = {
       this.executed.push(lastCmd)
     }
   },
+  rewind: function() {
+    clearInterval(this.player)
+    this.player = undefined
+    this.player = setInterval(function () {
+      if (commander.executed.length === 0) {
+        clearInterval(this.player)
+        return
+      }
+      commander.undo()
+    }, this.time)
+  },
+  play: function() {
+    clearInterval(this.player)
+    this.player = undefined
+    this.player = setInterval(function () {
+      if (commander.reverted.length === 0) {
+        clearInterval(this.player)
+        return
+      }
+      commander.redo()
+    }, this.time)
+  },
+
   save: function () {
     let exportStr,
         reverted = this.executed.slice().concat(this.reverted.slice()).reverse()
