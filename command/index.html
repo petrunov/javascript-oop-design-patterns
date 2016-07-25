@@ -26,8 +26,10 @@
   <script src="CreateCmd.js"></script>
   <script src="DragCmd.js"></script>
   <script src="DeleteCmd.js"></script>
+  <script src="ResizeCmd.js"></script>          
   <script>
     let lastClicked = null
+
     $('document').ready(function() {
       $('body').on('click','.ui-draggable',function(e){lastClicked = this});
 
@@ -49,6 +51,7 @@
       $('#undo').click(clickHandler)
       $('#redo').click(clickHandler)
       $('#delete').click(clickHandler)
+
       function clickHandler(e) {
         switch ($(this).attr('id')) {
           case 'create':
