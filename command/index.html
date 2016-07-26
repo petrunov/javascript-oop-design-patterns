@@ -30,10 +30,7 @@
   <script>
     let lastClicked = null
 
-    $('document').ready(function() {
-      $('body').on('click','.ui-draggable',function(e){lastClicked = this});
-
-      
+    $('document').ready(function() {      
       function deleteLastClicked() {
         if (lastClicked) {
           lastClicked.remove()
@@ -58,9 +55,10 @@
             commander.execute(Object.assign({}, CreateCmd))
             break;
           case 'delete':
-
-            var options = {receiver: lastClicked};
-            commander.execute(Object.assign({}, DeleteCmd), options);
+            if (lastClicked) {
+              var options = {receiver: lastClicked};
+              commander.execute(Object.assign({}, DeleteCmd), options);
+            }
             break;
           case 'undo':
             commander.undo()

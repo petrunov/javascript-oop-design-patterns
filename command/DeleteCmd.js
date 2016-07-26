@@ -18,7 +18,7 @@ let DeleteCmd = {
 		}
 	},
 	redo: function () {
-		this.execute()
+		this.execute(this.options)
 	}
 
 }
