@@ -23,6 +23,7 @@ let CreateCmd = {
   				this.background = '#' + Math.floor(Math.random() * 16777215).toString(16)
 
   			this.receiver = $('<div/>')
+        this.receiver.addClass('deletable')
   			this.receiver.css('position', 'absolute')
   			this.receiver.css('width', this.width)
   			this.receiver.css('height', this.height)
@@ -44,7 +45,6 @@ let CreateCmd = {
 
   			this.receiver.resizable({
           stop: function( event , ui) {
-              console.log('resize');
               var options = {
                   width: ui.size.width,
                   height: ui.size.height,
@@ -58,7 +58,9 @@ let CreateCmd = {
         });
 
         this.receiver.mousedown(function () {
-          lastClicked = $(this)
+          if ($(this).hasClass('deletable')) {
+            lastClicked = $(this)
+          }
         }) 
 
   			this.receiver.appendTo('body')

@@ -59,8 +59,8 @@
             break;
           case 'delete':
 
-            var options = {};
-            commander.execute(Object.assign({}, DeleteCmd, options));
+            var options = {receiver: lastClicked};
+            commander.execute(Object.assign({}, DeleteCmd), options);
             break;
           case 'undo':
             commander.undo()
